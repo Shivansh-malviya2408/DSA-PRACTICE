@@ -1,0 +1,35 @@
+class Solution {
+   
+    public int Kadane(int [] nums)
+    {
+        int ans=Integer.MIN_VALUE, sum=0;
+        for(int x: nums)
+        {
+            sum+=x;
+            ans=Math.max(ans,sum);
+            if(sum<=0) sum=0;
+        }
+        return ans;
+    }
+   
+   
+    public int maxSubarraySumCircular(int[] nums) {
+
+        int sum=Arrays.stream(nums).sum();
+        int ans1=Kadane(nums);
+
+        for(int i=0; i<nums.length; i++)
+        {
+            nums[i]*=-1;
+        }
+        int ans2=Kadane(nums)+sum;
+        
+        if(ans2==0) return ans1;
+
+
+        return Math.max(ans1,ans2);
+
+
+
+    }
+}

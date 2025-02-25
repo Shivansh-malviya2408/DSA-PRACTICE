@@ -1,0 +1,62 @@
+/**
+ * // This is MountainArray's API interface.
+ * // You should not implement it, or speculate about its implementation
+ * interface MountainArray {
+ *     public int get(int index) {}
+ *     public int length() {}
+ * }
+ */
+ 
+class Solution {
+
+    public int FindPeak(MountainArray arr)
+    {
+        int i=0,j=arr.length()-1;
+        while(i<j)
+        {
+            int mid=i+(j-i)/2;
+            if(arr.get(mid)>arr.get(mid+1)) j=mid;
+            else i=mid+1;
+        }
+        return i;
+    }
+
+    public int BS(MountainArray arr,int i, int j, int target)
+    {
+        while(i<=j)
+        {
+            int mid=i+(j-i)/2;
+            if(arr.get(mid)==target) return mid;
+            else if(arr.get(mid)>target) j=mid-1;
+            else i=mid+1; 
+        }
+        return -1;
+    }
+
+    public int RevBS(MountainArray arr,int i, int j, int target)
+    {
+        while(i<=j)
+        {
+            int mid=i+(j-i)/2;
+            if(arr.get(mid)==target) return mid;
+            else if(arr.get(mid)>target) i=mid+1;
+            else j=mid-1; 
+        }
+        return -1;
+    }
+
+
+    public int findInMountainArray(int target, MountainArray arr) {
+        
+        int peak=FindPeak(arr);
+        if(arr.get(peak)==target) return peak;
+
+        int left=BS(arr,0,peak-1,target);
+        if(left!=-1) return left;
+
+        int right=RevBS(arr,peak+1,arr.length()-1,target);
+        return right;
+
+
+    }
+}

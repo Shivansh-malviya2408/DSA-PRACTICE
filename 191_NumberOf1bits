@@ -1,8 +1,0 @@
-
-//  Count the no of set bits (1's in a decimal number)
-
-class Solution {
-    public int hammingWeight(int n) {
-        return Integer.bitCount(n);
-    }
-}
