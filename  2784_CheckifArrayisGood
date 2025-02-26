@@ -1,0 +1,29 @@
+class Solution {
+    public boolean isGood(int[] nums) {
+        
+        Arrays.sort(nums);
+        int n=nums.length,j=n-3; 
+
+        if(n!=(nums[n-1]+1)) return false;
+
+        if(nums[n-1]==nums[n-2])
+        {
+            while(j>-1)
+            {
+                if(nums[j]+1==nums[j+1])
+                {
+                    j--;
+                }
+                else return false;
+                
+            }
+        }
+        else return false;
+        
+        return true;
+    
+        
+
+
+    }
+}

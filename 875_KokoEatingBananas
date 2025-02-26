@@ -1,0 +1,46 @@
+class Solution {
+    
+   
+    public boolean check(int piles[],int h, int mid)
+    {
+        int k=0;
+
+        for(int i=0; i<piles.length; i++)
+        {
+             k+=(piles[i]/mid);
+             if(piles[i]%mid!=0)
+             {
+                k+=1;
+             }
+             
+        }
+
+        return k<=h;
+    }    
+    
+    
+    public   int minEatingSpeed(int[] piles, int h) {
+        int n=piles.length;
+        int max=-1,min=1;
+        // int sum=0;
+
+        for(int i: piles)
+        {
+            max=Math.max(max,i);
+
+        }
+       
+        if(n==h) return max;
+         
+        while(min<max)
+        {
+            int mid=min+(max-min)/2;
+            // int k=;
+            if(check(piles,h,mid)) max=mid;
+            else min=mid+1;
+        }
+
+        return min;
+    }
+    
+}
