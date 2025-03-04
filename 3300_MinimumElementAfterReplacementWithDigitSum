@@ -1,0 +1,13 @@
+class Solution {
+    public int minElement(int[] nums) {
+        
+        int min=Integer.MAX_VALUE;
+
+        for(int n : nums)
+        {
+          min=Math.min(min, n%10+(n/10)%10 + (n/100)%10 + (n/1000)%10 +(n/10000)%10 );
+        }
+        return min;
+
+    }
+}
